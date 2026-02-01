@@ -1,0 +1,33 @@
+# Universal Key
+# By EUR0TR0N
+
+# Upon Bruteforce success, the key will try one more time
+# with the next code, in order to leave a trace
+# If the bruteforce succeeds and leaves an error code
+# for code "1234", then the correct code was "1233"
+
+# Add all known codes here
+# Please manually add a code here anytime 
+# the key unlocks a door
+array codes = []
+
+bool unlocked = false
+
+number codeNumber = Count(codes)
+codeNumber--
+
+loop x from 0 to codeNumber
+    if Toggle(codes[x])
+        unlocked = true
+        break
+    end
+end
+
+if unlocked == false
+    loop x from 0 to 99999
+        if Toggle(x)
+            Toggle(x+1)
+            break
+        end
+    end
+end
