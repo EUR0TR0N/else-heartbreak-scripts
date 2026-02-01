@@ -1,0 +1,12 @@
+# Euro-Cola 1.0
+# By EUR0TR0N
+# For use in internet-connected soda cans
+
+Sleepiness(-10)
+Smelliness(-10)
+Charisma(5)
+Say("Enjoying Euro-Cola in "+GetRoom())
+
+var server = Connect("Wellspringer")
+server.Print("Greetings from EUR0TR0N!")
+#server.Trace(GetUser(), GetRoom())
