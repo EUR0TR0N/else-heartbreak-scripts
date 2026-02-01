@@ -1,0 +1,16 @@
+# Euro-Cola Filler
+# By EUR0TR0N
+# For use with sinks. Transforms any drink into Euro-Cola Extreme.
+
+SetLiquidAmount(30000)
+
+ClearCode()
+AppendCode("# Euro-Cola 1.0E")
+AppendCode("# By EUR0TR0N")
+AppendCode("# For use in internet-connected soda cans")
+AppendCode("Sleepiness(-100)")
+AppendCode("Smelliness(-100)")
+AppendCode("Charisma(100)")
+AppendCode("Say('Enjoying Euro-Cola Extreme in '+GetRoom())")
+AppendCode("var server = Connect('Wellspringer')")
+AppendCode("server.Print('Greetings from EUR0TR0N!')")
