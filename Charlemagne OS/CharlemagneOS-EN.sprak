@@ -1,4 +1,7 @@
 # Charlemagne OS 
+# English Language
+# By EUR0TR0N
+# For use in computers with internet modem, floppy drive and memory module
 
 PlaySound("Coin 1")
 Bar()

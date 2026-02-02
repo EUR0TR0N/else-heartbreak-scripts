@@ -1,0 +1,113 @@
+# Charlemagne OS 
+# German Language
+# By EUR0TR0N
+# For use in computers with internet modem, floppy drive and memory module
+
+PlaySound("Coin 1")
+Bar()
+Print("    Bs Charlemagne v1.2      ")
+Print("  * * * * * * * * * * * *    ")
+Print("     (C) EUR0TR0N 1992       ")
+Print("Veroffentlicht unter GNUGPL 3")
+Bar()
+Sleep(2)
+Print("Booten...")
+number id = -1
+Sleep(1)
+Print("Ordentlich.")
+
+loop
+    string cmd = Input("heim> ")
+
+    if cmd == "info"
+        Info()
+    else if cmd == "h" or cmd == "helfen"
+        Help()
+    else if cmd == "idverbinden"
+        EstablishIdConnection()
+    else if cmd == "ipverbinden"
+        EstablishIpConnection()
+    else if cmd == "speichern"
+        Store()
+    else if cmd == "abrufen"
+        Restore()
+    else if cmd == "fern"
+        RemoteCall()
+    else if cmd == "booten"
+        BootFromFloppy()
+    else if cmd == "lesen"
+        LoadFloppy()
+    else
+        Print("Befehlsfehler " + cmd)
+        Print("Geben Sie h ein, um Hilfe zu erhalten.")
+    end
+    Sleep(1)
+end
+
+void Help()
+    Print("Grundlegende befehle:")
+    Print(" - h or helfen")
+    Print(" - info")
+    Print(" - speichern")
+    Print(" - abrufen")
+    Input("4/9 DRÜCKEN SIE EINGABE")
+    Print("Internetbefehle:")
+    Print(" - idverbinden")
+    Print(" - ipverbinden")
+    Print(" - fern")
+    Input("7/9 DRÜCKEN SIE EINGABE")
+    Print("Diskettenbefehle:")
+    Print(" - lesen")
+    Print(" - booten")
+end
+
+void LoadFloppy()
+    if HasFloppy()
+        Print("")
+        Print("Informationen auf der Diskette:")
+        Print("")
+        var allData = LoadData()
+        loop data in allData
+            Print(data)
+            Sleep(0.75)
+        end
+        Print("---DATEIENDE")
+    else
+        Print("Bitte legen Sie die Diskette ein....")
+    end
+end
+
+void RemoteCall()
+    string fnName = Input(id+"> ")
+    RemoteFunctionCall(id, fnName, [])
+end
+
+void Restore()
+    string key = Input("Schlussel: ")
+    Print(LoadMemory(key))
+end
+
+void Store()
+    string key = Input("Schlussel: ")
+    string data = Input("Info: ")
+    SaveMemory(key, data)
+    Print("Die Informationen wurden registriert.")
+end
+
+void EstablishIpConnection()
+    number connection_ip = Input("IP: ")
+    Print("Verbindung zu IP herstellen, IP "+connection_ip)
+    id = connection_ip
+end
+
+void EstablishIdConnection()
+    string connectionId = Input("Id: ")
+    id = Connect(connectionId)
+    if id > -1
+        Print("Verbindung erfolgreich.")
+    end
+end
+
+void Bar()
+    Print("=============================")
+end
