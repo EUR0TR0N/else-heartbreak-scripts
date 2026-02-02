@@ -1,0 +1,117 @@
+# Charlemagne OS 
+# Slurp-capable
+# French Language
+# By EUR0TR0N
+# For use in computers with internet modem, floppy drive and memory module
+
+ClearText()
+PlaySound("Coin 1")
+Bar()
+Print("   SO Charlemagne v1.3-X     ")
+Print("  * * * * * * * * * * * *    ")
+Print("     (C) EUR0TR0N 1992       ")
+Print("Publie sous licence GNU GPL 3")
+Bar()
+Sleep(2)
+Print("Demarrage...")
+number id = -1
+Sleep(1)
+Print("Bon.")
+
+loop
+    string cmd = Input("origine> ")
+
+    if cmd == "info"
+        Info()
+    else if cmd == "a" or cmd == "aide"
+        Help()
+    else if cmd == "idconnecter"
+        EstablishIdConnection()
+    else if cmd == "ipconnecter"
+        EstablishIpConnection()
+    else if cmd == "stocker"
+        Store()
+    else if cmd == "restaurer"
+        Restore()
+    else if cmd == "tele"
+        RemoteCall()
+    else if cmd == "demarrer"
+        BootFromFloppy()
+    else if cmd == "lire"
+        LoadFloppy()
+	else if cmd == "portal"
+		Slurp()
+    else
+        Print("Erreur de commande " + cmd)
+        Print("Tapez a pour obtenir de l'aide.")
+    end
+    Sleep(1)
+end
+
+void Help()
+    Print("Commandes de base:")
+    Print(" - a or aide")
+    Print(" - info")
+    Print(" - stocker")
+    Print(" - restaurer")
+    Input("4/9 APPUYEZ SUR ENTREE")
+    Print("Commandes de l'Internet:")
+    Print(" - idconnecter")
+    Print(" - ipconnecter")
+    Print(" - tele")
+    Input("7/9 APPUYEZ SUR ENTREE")
+    Print("Commandes de disquette:")
+    Print(" - lire")
+    Print(" - demarrer")
+end
+
+void LoadFloppy()
+    if HasFloppy()
+        Print("")
+        Print("Information sur la disquette:")
+        Print("")
+        var allData = LoadData()
+        loop data in allData
+            Print(data)
+            Sleep(0.75)
+        end
+        Print("---FIN DU FICHIER")
+    else
+        Print("Veuillez inserer une disquette...")
+    end
+end
+
+void RemoteCall()
+    string fnName = Input(id+"> ")
+    RemoteFunctionCall(id, fnName, [])
+end
+
+void Restore()
+    string key = Input("Cle: ")
+    Print(LoadMemory(key))
+end
+
+void Store()
+    string key = Input("Cle: ")
+    string data = Input("Info: ")
+    SaveMemory(key, data)
+    Print("L'info ont ete enregistrees.")
+end
+
+void EstablishIpConnection()
+    number connection_ip = Input("IP: ")
+    Print("Connexion a IP "+connection_ip)
+    id = connection_ip
+end
+
+void EstablishIdConnection()
+    string connectionId = Input("Id: ")
+    id = Connect(connectionId)
+    if id > -1
+        Print("Connexion reussie.")
+    end
+end
+
+void Bar()
+    Print("=============================")
+end
