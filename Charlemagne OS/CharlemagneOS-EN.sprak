@@ -1,6 +1,8 @@
+# Charlemagne OS 
+
 PlaySound("Coin 1")
 Bar()
-Print("    Charlemagne OS v1.0      ")
+Print("    Charlemagne OS v1.1      ")
 Print("  * * * * * * * * * * * *    ")
 Print("     (C) EUR0TR0N 1992       ")
 Print("Released under The GNU GPL v3")
@@ -17,16 +19,18 @@ Print("OK.")
 loop
     string cmd = Input("root> ")
 
-    if cmd == "ls"
-        ListMemory()
-    else if cmd == "lsc"
-        ListConnections()
+    if cmd == "info"
+        Info()
+    #else if cmd == "ls"
+    #    ListMemory()
+    #else if cmd == "lsc"
+    #    ListConnections()
     else if cmd == "h" or cmd == "help"
         Help()
     else if cmd == "idconnect"
         EstablishIdConnection()
-    else if cmd == "nameconnect"
-        EstablishNameConnection()
+    #else if cmd == "nameconnect"
+    #    EstablishNameConnection()
     else if cmd == "ipconnect"
         EstablishIpConnection()
     else if cmd == "store"
@@ -35,8 +39,6 @@ loop
         Restore()
     else if cmd == "remote"
         RemoteCall()
-    else if cmd == "info"
-        Info()
     else if cmd == "boot"
         BootFromFloppy()
     else if cmd == "load"
@@ -52,17 +54,17 @@ void Help()
     Print("Basic commands:")
     Print(" - h or help")
     Print(" - info")
-    Print(" - ls")
+    #Print(" - ls")
     Print(" - store")
     Print(" - restore")
-    Input("5/12 PRESS ENTER")
+    Input("4/9 PRESS ENTER")
     Print("Internet commands:")
     Print(" - idconnect")
-    Print(" - nameconnect")
+    #Print(" - nameconnect")
     Print(" - ipconnect")
     Print(" - remote")
-    Print(" - lsc")
-    Input("10/12 PRESS ENTER")
+    #Print(" - lsc")
+    Input("7/9 PRESS ENTER")
     Print("Floppy commands:")
     Print(" - load")
     Print(" - boot")
