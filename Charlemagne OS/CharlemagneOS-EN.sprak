@@ -1,0 +1,170 @@
+PlaySound("Coin 1")
+Bar()
+Print("    Charlemagne OS v1.0      ")
+Print("  * * * * * * * * * * * *    ")
+Print("     (C) EUR0TR0N 1992       ")
+Print("Released under The GNU GPL v3")
+Bar()
+Sleep(2)
+Print("Booting...")
+number id = -1
+array connections = []
+array connection_names = []
+array memory_blocks = []
+Sleep(1)
+Print("OK.")
+
+loop
+    string cmd = Input("root> ")
+
+    if cmd == "ls"
+        ListMemory()
+    else if cmd == "lsc"
+        ListConnections()
+    else if cmd == "h" or cmd == "help"
+        Help()
+    else if cmd == "idconnect"
+        EstablishIdConnection()
+    else if cmd == "nameconnect"
+        EstablishNameConnection()
+    else if cmd == "ipconnect"
+        EstablishIpConnection()
+    else if cmd == "store"
+        Store()
+    else if cmd == "restore"
+        Restore()
+    else if cmd == "remote"
+        RemoteCall()
+    else if cmd == "info"
+        Info()
+    else if cmd == "boot"
+        BootFromFloppy()
+    else if cmd == "load"
+        LoadFloppy()
+    else
+        Print("Can't understand command " + cmd)
+        Print("Enter h for help.")
+    end
+    Sleep(1)
+end
+
+void Help()
+    Print("Basic commands:")
+    Print(" - h or help")
+    Print(" - info")
+    Print(" - ls")
+    Print(" - store")
+    Print(" - restore")
+    Input("5/12 PRESS ENTER")
+    Print("Internet commands:")
+    Print(" - idconnect")
+    Print(" - nameconnect")
+    Print(" - ipconnect")
+    Print(" - remote")
+    Print(" - lsc")
+    Input("10/12 PRESS ENTER")
+    Print("Floppy commands:")
+    Print(" - load")
+    Print(" - boot")
+end
+
+void LoadFloppy()
+    if HasFloppy()
+        Print("")
+        Print("Data on floppy:")
+        Print("")
+        var allData = LoadData()
+        loop data in allData
+            Print(data)
+            Sleep(0.75)
+        end
+        Print("---END OF FILE")
+    else
+        Print("Please insert floppy...")
+    end
+end
+
+void RemoteCall()
+    string fnName = Input(id+"> ")
+    RemoteFunctionCall(id, fnName, [])
+end
+
+void Restore()
+    string key = Input("Key: ")
+    Print(LoadMemory(key))
+end
+
+void Store()
+    string key = Input("Key: ")
+    string data = Input("Data: ")
+    SaveMemory(key, data)
+    new_memory = true
+    number memory_number = Count(memory_blocks)
+    memory_number--
+    loop x from 0 to (memory_number)
+        if memory_blocks[x] == key
+        new_memory = false
+        end
+    end
+    if new_memory
+        Append(memory_blocks, key)
+    end
+    Print("Data was saved.")
+end
+
+void EstablishIpConnection()
+    number connection_ip = Input("IP: ")
+    Print("Connecting to IP "+connection_ip)
+    ip = connection_ip
+end
+
+void EstablishNameConnection()
+    bool connected = false
+    string connection_name = Input("Name: ")
+    number connection_number = Count(connection_names)
+    connection_number--
+    loop x from 0 to (connection_number)
+        if connection_name == connection_names[x]
+            id = connections[x]
+            Print("Connection Found")
+            connected = true
+            break
+        end
+    end
+    if connected == false
+        Print("Connection Failed")
+    end
+end
+
+void EstablishIdConnection()
+    string connectionId = Input("Id: ")
+    id = Connect(connectionId)
+    if id > -1
+        Print("Please name connection")
+        string connectionName = Input("Name: ")
+        Append(connections, id)
+        Append(connection_names, connectionName)
+    end
+end
+
+void ListMemory()
+    number memory_number = Count(memory_blocks)
+    memory_number--
+    loop x from 0 to (memory_number)
+        Print(memory_blocks[x])
+    end
+end
+
+void ListConnections()
+    number connection_number = Count(connection_names)
+    connection_number--
+    loop x from 0 to (connection_number)
+        Print("Name: "+connection_names[x])
+        Print("IP: "+connections[x])
+        Print("")
+    end
+end
+
+void Bar()
+    Print("=============================")
+end
