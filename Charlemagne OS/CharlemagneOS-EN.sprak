@@ -101,8 +101,7 @@ void EstablishIdConnection()
     string connectionId = Input("Id: ")
     id = Connect(connectionId)
     if id > -1
-        Print("Please name connection")
-        string connectionName = Input("Name: ")
+        Print("Connection Successful.")
     end
 end
 
