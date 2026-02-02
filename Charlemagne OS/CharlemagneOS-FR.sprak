@@ -3,9 +3,10 @@
 # By EUR0TR0N
 # For use in computers with internet modem, floppy drive and memory module
 
+ClearText()
 PlaySound("Coin 1")
 Bar()
-Print("    SO Charlemagne v1.2      ")
+Print("    SO Charlemagne v1.3      ")
 Print("  * * * * * * * * * * * *    ")
 Print("     (C) EUR0TR0N 1992       ")
 Print("Publie sous licence GNU GPL 3")
