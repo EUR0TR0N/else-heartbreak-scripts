@@ -98,7 +98,7 @@ void Store()
     string key = Input("Key: ")
     string data = Input("Data: ")
     SaveMemory(key, data)
-    new_memory = true
+    bool new_memory = true
     number memory_number = Count(memory_blocks)
     memory_number--
     loop x from 0 to (memory_number)
@@ -115,7 +115,7 @@ end
 void EstablishIpConnection()
     number connection_ip = Input("IP: ")
     Print("Connecting to IP "+connection_ip)
-    ip = connection_ip
+    id = connection_ip
 end
 
 void EstablishNameConnection()
